@@ -11,7 +11,10 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<h1 id="helloHeader">Welcome to PA2</h1>
+	<h1 id="hotelHeader">Welcome to Hotel</h1>
+	
+	<button id="create_customer_button" type="submit" class="btn btn-lg btn-primary">Create Customer</button>
+	
 	<div id="create_customer_information">
 		<form>
 			<p>Please enter customer information</p>
@@ -20,79 +23,88 @@
 			Billing City: <input type="text" id="billing_city"> Billing State:<input type="text" id="billing_state"> <br>
 			Billing Zip: <input type="text" id="billing_zip"> Check-in Date:<input type="text" id="checkin_date"> Check-out Date:<input type="text" id="checkout_date"> <br>	
 		</form>
-		<button id="submitButton" type="submit" class="btn btn-lg btn-primary">SUBMIT</button>
+		<button id="submit_customer_button" type="submit" class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
 
+<button id="reserve_room_button" type="button" class="btn btn-lg btn-primary">Reserve</button>
 	<div id="reserve">
-
 		<form>
 			<p>Reserve A Room</p>
 			Customer ID: <input type="text" id="customer_id"> Room number: <input type="text" id="room_number"> <br>
 		</form>
-
-		<button id="reserve_room_button" type="button" class="btn btn-lg btn-primary">Reserve</button>
+		<button id="submit_reserve_room_button" type="button" class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
-
+	
+<button id="create_payment_button" type="button" class="btn btn-lg btn-primary">Create payment</button>
 	<div id="create_payment">
-
 		<form>
 			<p>CREATE PAYMENT</p>
 			Customer ID: <input type="text" id="customer_id"> Room number: <input type="text" id="room_number"> <br>
 			Payment Amount: <input type="text" id="amount"> Credit Card Number:<input type="text" id="cc_number"> Expriation Date: <input type="text" id="exp_date"> 
 		</form>
-
-		<button id="create_pay_button" type="button" class="btn btn-lg btn-primary">CREATE PAYMENT</button>
+		<button id="submit_payment_button" type="button" class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
-
+	
+	
+<button id="get_customer_id_button" type="button" class="btn btn-lg btn-primary">GET CUSTOMER ID</button>
 	<div id="get_customer_id">
 		<form>
 			<p>GET customer by ID</p>
 			Customer ID: <input type="text" id="customer_id">
 		</form>
-		<button id="get_customer_id_button" type="button"
-			class="btn btn-lg btn-primary">GET CUSTOMER ID</button>
+		<button id="submit_get_customer_id_button" type="button"
+			class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
 	
+<button id="get_customer_name_button" type="button"class="btn btn-lg btn-primary">GET CUSTOMER BY NAME</button>
 	<div id="get_customer_name">
 		<form>
 			<p>GET customer by Name</p>
 			Customer name: <input type="text" id="customer_name">
 		</form>
-		<button id="get_customer_name_button" type="button"
-			class="btn btn-lg btn-primary">GET CUSTOMER BY NAME</button>
+		<button id="submit_get_customer_name_button" type="button"
+			class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
 	
+	
+<button id="get_customer_current_button" type="button"
+			class="btn btn-lg btn-primary">GET CUSTOMERS CURRENT</button>
 	<div id="get_customer_current">
 		<form>
 			<p>GET customers current</p>
 		</form>
-		<button id="get_customer_name_button" type="button"
-			class="btn btn-lg btn-primary">GET CUSTOMERS CURRENT</button>
+		<button id="submit_get_customers_current_button" type="button"
+			class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
 	
+	
+	<button id="get_transactions_button" type="button" class="btn btn-lg btn-primary">GET TRANSACTIONS</button>
 	<div id="get_transactions">
 		<form>
 			<p>GET transactions [CUSTOMER ID]</p>
 			Customer ID: <input type="text" id="customer_id">
 		</form>
-		<button id="get_transactions_button" type="button"
-			class="btn btn-lg btn-primary">GET TRANSACTIONS</button>
+		<button id="submit_get_transactions_button" type="button"
+			class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
 	
+	
+	<button id="get_vacancies_button" type="button" class="btn btn-lg btn-primary">GET VACANCIES</button>
 	<div id="get_vacancies">
 		<form>
 			<p>GET VACANCIES</p>
 		</form>
-		<button id="get_vacancies_button" type="button"
-			class="btn btn-lg btn-primary">GET VACANCIES</button>
+		<button id="submit_vacancies_button" type="button"
+			class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
 	
+	<button id="get_reservation_button" type="button" class="btn btn-lg btn-primary">GET RESERVATION</button>
 	<div id="get_reservation">
 		<form>
 			<p>GET RESERVATION</p>
 		</form>
-		<button id="get_reservation_button" type="button"
-			class="btn btn-lg btn-primary">GET RESERVATION</button>
+		<button id="submit_reservation_button" type="button"
+			class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
