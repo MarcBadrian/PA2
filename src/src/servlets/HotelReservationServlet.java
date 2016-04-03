@@ -109,6 +109,8 @@ public class HotelReservationServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		    	MysqlConnector connector = new MysqlConnector();
+		    	String json = request.getParameter("data");
+		    	System.out.println(json);
 				Integer choice = Integer.parseInt(request.getParameter("choice"));
 				PrintWriter out = response.getWriter();
 				
