@@ -45,34 +45,34 @@ $("#submit_customer_button").click(function(){
     });
 	console.log('CREATE CUSTOMER');
 	var data = new Object();
-	data.choice = "1";
-	data.fname = $("#first_name").val();
-	data.lname = $("#last_name").val();
+	data.firstName = $("#first_name").val();
+	data.lastName = $("#last_name").val();
 	data.number = $("#phone_number").val(); 
-	data.address = $("#billing_address").val();
-	data.city = $("#billing_city").val();
-	data.state = $("#billing_state").val();
-	data.zip = $("#billing_zip").val();
-	data.checkin = $("#checkin_date").val();
-	data.checkout = $("#checkout_date").val();
+	data.billingAddress = $("#billing_address").val();
+	data.billingCity = $("#billing_city").val();
+	data.billingState = $("#billing_state").val();
+	data.billingZip = $("#billing_zip").val();
+	data.checkIn = $("#checkin_date").val();
+	data.checkOut = $("#checkout_date").val();
 	$.ajax({
 		type: 'POST',
         contentType: 'application/json',
-        url: '/PA2',
-        dataType: "json",
+        url: 'HotelReservationServlet?choice=1',
+        //dataType: "json",
         data: JSON.stringify(data),
-		success: function(data){
+        success: function(){
 			$("#hotelHeader").html("Success!");
 			alert('Customer saved successfully.');
 			//var res=JSON.parse(AJAX.responseText)
-			alert(data);
+			console.log(data);
 			//alert(res);
 		},
 		error: function(data,status,xhr){
 			$("#hotelHeader").html("Error occurred.");
-			alert(data);
-			alert(status);
-			alert(xhr.responseText);
+			console.log(data);
+			//alert(data);
+			console.log(status);
+			console.log(xhr.responseText);
 		},
 	});
 	

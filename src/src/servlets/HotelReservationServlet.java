@@ -8,9 +8,12 @@
 package src.servlets;
 
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import src.model.Customer;
 
+import org.json.JSONObject;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Servlet implementation class EchoServlet
@@ -109,30 +115,48 @@ public class HotelReservationServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		    	MysqlConnector connector = new MysqlConnector();
-		    	String json = request.getParameter("data");
-		    	System.out.println(json);
 				Integer choice = Integer.parseInt(request.getParameter("choice"));
+
+		    	// 1. get received JSON data from request
+		        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+		        String json = "";
+		        if(br != null){
+		            json = br.readLine();
+		        }
+		 
+		        // 2. initiate jackson mapper
+		        ObjectMapper mapper = new ObjectMapper();
+		 
+		        // 3. Convert received JSON to Article
+		        //Customer customer = mapper.readValue(json, Customer.class);
+		        //System.out.println(customer);
+	    	
+
 				PrintWriter out = response.getWriter();
 				
 				try {
 					
 					switch (choice) {
 					case 1: 
-						String first_name = request.getParameter("first_name");
-						String last_name = request.getParameter("last_name");
-						Integer phone_number = Integer.parseInt(request.getParameter("phone_number"));
-						String billing_address = request.getParameter("billing_address");
-						String billing_city = request.getParameter("billing_city");
-						String billing_state = request.getParameter("billing_state");
-						Integer billing_zip = Integer.parseInt(request.getParameter("billing_zip"));
-						String checkin_date = request.getParameter("checkin_date");
-						String checkout_date = request.getParameter("checkout_date");
+						Customer customer = mapper.readValue(json, Customer.class);
+		        		//System.out.println(customer);
+						String first_name = customer.getFirstName();
+						String last_name = customer.getLastName();
+						/*
+						String phone_number = customer.getNumber();
+						String billing_address = customer.getBillingAddress();
+						String billing_city = customer.getBillingCity();
+						String billing_state = customer.getBillingState();
+						String billing_zip = customer.getBillingZip();
+						String checkin_date = customer.getCheckinDate();
+						String checkout_date = customer.getCheckoutDate();
 						Customer newCust = new Customer();
-						newCust.setName(first_name, last_name);
+						newCust.setFirstName(first_name);
+						newCust.setLastName(last_name);
 						newCust.setNumber(phone_number);
 						newCust.setBillingInfo(billing_address, billing_city, billing_state, billing_zip);
-						newCust.setCheckInOut(checkin_date, checkout_date);
-						boolean success = connector.insertCustomer(newCust);
+						newCust.setCheckInOut(checkin_date, checkout_date);*/
+						boolean success = connector.insertCustomer(customer);
 						int id = connector.getCustomerId(first_name, last_name);
 						response.setContentType("text/html");
 						if(!success){

@@ -12,11 +12,11 @@ public class Customer {
 	private int customer_id;
 	private String first_name;
 	private String last_name;
-	private int phone_number;
+	private String phone_number;
 	private String billing_address;
 	private String billing_city;
 	private String billing_state;
-	private int billing_zip;
+	private String billing_zip;
 	private String checkin_date;
 	private String checkout_date;
 	
@@ -33,7 +33,7 @@ public class Customer {
 		return last_name;
 	}
 	
-	public int getNumber() {
+	public String getNumber() {
 		return phone_number;
 	}
 	
@@ -49,7 +49,7 @@ public class Customer {
 		return billing_state;
 	}
 	
-	public int getBillingZip() {
+	public String getBillingZip() {
 		return billing_zip;
 	}
 	
@@ -62,29 +62,43 @@ public class Customer {
 	}
 
 	// setter methods
-	public void setCustomerId(int customer_id) {
-		this.customer_id = customer_id;
-	}
+	//public void setCustomerId(int customer_id) {
+	//	this.customer_id = customer_id;
+	//}
 
-	public void setName(String first_name, String last_name) {
+	public void setFirstName(String first_name) {
 		this.first_name = first_name;
+	}
+	
+	public void setLastName(String last_name) {
 		this.last_name = last_name;
 	}
 	
-	public void setNumber(int phone_number) {
+	public void setNumber(String phone_number) {
 		this.phone_number = phone_number;
 	}
 	
-	public void setBillingInfo(String billing_address, String billing_city,
-	String billing_state, int billing_zip) {
+	public void setBillingAddress(String billing_address) {
 		this.billing_address = billing_address;
-		this.billing_city = billing_city;
-		this.billing_state = billing_state;
-		this.billing_zip = billing_zip;
 	}
 	
-	public void setCheckInOut(String checkin_date, String checkout_date) {
+	public void setBillingCity(String billing_city) {
+				this.billing_city = billing_city;
+	}
+	
+	public void setBillingState(String billing_state) {
+				this.billing_state = billing_state;
+	}
+	
+	public void setBillingZip(String billing_zip) {
+				this.billing_zip = billing_zip;
+	}
+	
+	public void setCheckIn(String checkin_date) {
 		this.checkin_date = checkin_date;
+	}
+	
+	public void setCheckOut(String checkout_date) {
 		this.checkout_date = checkout_date;
 	}
 	

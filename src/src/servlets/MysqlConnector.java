@@ -28,7 +28,7 @@ public class MysqlConnector {
 	public MysqlConnector() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			System.out.println("JDBC driver registered");
+			//System.out.println("JDBC driver registered");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -88,7 +88,7 @@ public class MysqlConnector {
 				createTable = conn.prepareStatement("USE Hotel_Reservation_System; ");
 				createTable.executeUpdate();
 				createTable1 = conn.prepareStatement( 
-						"CREATE TABLE IF NOT EXISTS customers ( customer_id INT NOT NULL AUTO_INCREMENT, first_name VARCHAR(25) NOT NULL, last_name VARCHAR(40) NOT NULL, phone_number INT, billing_address VARCHAR(100), billing_city VARCHAR(50), billing_state VARCHAR(20), billing_zip INT,  checkin_date VARCHAR(25),  checkout_date VARCHAR(25), PRIMARY KEY(customer_id))");
+						"CREATE TABLE IF NOT EXISTS customers ( customer_id INT NOT NULL AUTO_INCREMENT, first_name VARCHAR(25) NOT NULL, last_name VARCHAR(40) NOT NULL, phone_number VARCHAR(100), billing_address VARCHAR(100), billing_city VARCHAR(50), billing_state VARCHAR(20), billing_zip VARCHAR(10),  checkin_date VARCHAR(25),  checkout_date VARCHAR(25), PRIMARY KEY(customer_id))");
 				createTable1.executeUpdate();
 
 			} catch (SQLException e) {
@@ -175,11 +175,11 @@ public class MysqlConnector {
 			stmt = con.prepareStatement("INSERT INTO Hotel_Reservation_System.customers (first_name, last_name, phone_number, billing_address, billing_city, billing_state, billing_zip, checkin_date, checkout_date) VALUES (?,?,?,?,?,?,?,?,?)");
 			stmt.setString(1, customer.getFirstName());
 			stmt.setString(2, customer.getLastName());
-			stmt.setInt(3, customer.getNumber());
+			stmt.setString(3, customer.getNumber());
 			stmt.setString(4, customer.getBillingAddress());
 			stmt.setString(5, customer.getBillingCity());
 			stmt.setString(6, customer.getBillingState());
-			stmt.setInt(7, customer.getBillingZip());
+			stmt.setString(7, customer.getBillingZip());
 			stmt.setString(8, customer.getCheckinDate());
 			stmt.setString(9, customer.getCheckoutDate());
 			System.out.println(stmt);
@@ -437,11 +437,11 @@ public class MysqlConnector {
 			String customer_id = Integer.toString(rs.getInt("customer_id"));
 			String first_name = rs.getString("first_name");
 			String last_name = rs.getString("last_name");
-			String phone_number = Integer.toString(rs.getInt("phone_number"));
+			String phone_number = rs.getString("phone_number");
 			String billing_address = rs.getString("billing_address");
 			String billing_city = rs.getString("billing_city");
 			String billing_state = rs.getString("billing_state");
-			String billing_zip = Integer.toString(rs.getInt("billing_zip"));
+			String billing_zip = rs.getString("billing_zip");
 			String checkin_date = rs.getString("checkin_date");
 			String checkout_date = rs.getString("checkout_date");
 			String custInfo = "Customer Information: " + "\n" + "\n" +
@@ -504,7 +504,7 @@ public class MysqlConnector {
 			String customer_id = Integer.toString(rs.getInt("customer_id"));
 			String first_name = rs.getString("first_name");
 			String last_name = rs.getString("last_name");
-			String phone_number = Integer.toString(rs.getInt("phone_number"));
+			String phone_number = rs.getString("phone_number");
 			String custInfo = last_name + "\t" + "\t" + "\t" + first_name + "\t" + "\t" + "\t" + customer_id + "\t" + "\t" + phone_number + "\n";
 			allMatches += custInfo;
 			}
