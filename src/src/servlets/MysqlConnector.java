@@ -22,7 +22,7 @@ public class MysqlConnector {
 
 	private static String dbName = "Hotel_Reservation_System";
 	private static String dbUser = "root";
-	private static String dbPassword = "1234";
+	private static String dbPassword = "054810407";
     int new_customer_id = 0;
 
 	public MysqlConnector() {
@@ -668,12 +668,12 @@ public class MysqlConnector {
 			// Execute the query
 			stmt = con.prepareStatement("SELECT room_number, room_type FROM Hotel_Reservation_System.rooms WHERE current_occupant IS NULL");
 			rs = stmt.executeQuery();
-			String allMatches = "Room Number:	Room Type: " + "\n" + "\n";
+			String allMatches = "Room Number &emsp;&emsp;	Room Type &emsp; &emsp; <br>";
 			while (rs.next()) {
 			String room_number = Integer.toString(rs.getInt("room_number"));
 			String room_type = rs.getString("room_type");
-			String custInfo = room_number + "\t" + "\t" + room_type + "\n";
-			allMatches += custInfo;
+			String custInfo = room_number + "&emsp;&emsp;" + "&emsp;&emsp;" + room_type;
+			allMatches += custInfo + "<br>";
 			}
 			return allMatches;
 		} catch (SQLException ex) {
@@ -722,15 +722,16 @@ public class MysqlConnector {
 			// Execute the query
 			stmt = con.prepareStatement("SELECT room_number, first_name, last_name FROM Hotel_Reservation_System.rooms JOIN Hotel_Reservation_System.customers ON rooms.current_occupant = customers.customer_id");
 			rs = stmt.executeQuery();
-			String allMatches = "Room Number:	First Name:	Last Name: " + "\n";
+//			String allMatches = "Room Number:	First Name:	Last Name: " + "\n";
+			String allMatches = "Room Number &emsp;	First Name &emsp;	Last Name &emsp;  <br>";
 			while (rs.next()) {
 			String room_number = Integer.toString(rs.getInt("room_number"));
 			String first_name = rs.getString("first_name");
 			String last_name = rs.getString("last_name");
-			String custInfo = room_number + "\t" + "\t" + first_name + "\t" + "\t" + last_name + "\n";
-			allMatches += custInfo;
+			String custInfo = room_number + "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + first_name + "	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	" + last_name;
+			allMatches += custInfo +"<br>";
 			}
-			return allMatches;
+			return "<p align=\"left\">"+ "<font size = 6>" + allMatches + "</font>" + "</p>";
 		} catch (SQLException ex) {
 			// handle any errors
 			System.out.println("SQLException: " + ex.getMessage());
