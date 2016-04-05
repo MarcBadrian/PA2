@@ -117,19 +117,6 @@ public class HotelReservationServlet extends HttpServlet {
 		    	MysqlConnector connector = new MysqlConnector();
 				Integer choice = Integer.parseInt(request.getParameter("choice"));
 
-		    	// 1. get received JSON data from request
-		        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-		        String json = "";
-		        if(br != null){
-		            json = br.readLine();
-		        }
-		 
-		        // 2. initiate jackson mapper
-		        ObjectMapper mapper = new ObjectMapper();
-		 
-		        // 3. Convert received JSON to Article
-		        //Customer customer = mapper.readValue(json, Customer.class);
-		        //System.out.println(customer);
 	    	
 
 				PrintWriter out = response.getWriter();
@@ -138,24 +125,19 @@ public class HotelReservationServlet extends HttpServlet {
 					
 					switch (choice) {
 					case 1: 
+						// 1. get received JSON data from request
+				        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+				        String json = "";
+				        if(br != null){
+				            json = br.readLine();
+				        }
+				        // 2. initiate jackson mapper
+				        ObjectMapper mapper = new ObjectMapper();		 
+				        // 3. Convert received JSON to Customer
 						Customer customer = mapper.readValue(json, Customer.class);
 		        		//System.out.println(customer);
 						String first_name = customer.getFirstName();
 						String last_name = customer.getLastName();
-						/*
-						String phone_number = customer.getNumber();
-						String billing_address = customer.getBillingAddress();
-						String billing_city = customer.getBillingCity();
-						String billing_state = customer.getBillingState();
-						String billing_zip = customer.getBillingZip();
-						String checkin_date = customer.getCheckinDate();
-						String checkout_date = customer.getCheckoutDate();
-						Customer newCust = new Customer();
-						newCust.setFirstName(first_name);
-						newCust.setLastName(last_name);
-						newCust.setNumber(phone_number);
-						newCust.setBillingInfo(billing_address, billing_city, billing_state, billing_zip);
-						newCust.setCheckInOut(checkin_date, checkout_date);*/
 						boolean success = connector.insertCustomer(customer);
 						int id = connector.getCustomerId(first_name, last_name);
 						response.setContentType("text/html");
@@ -163,7 +145,7 @@ public class HotelReservationServlet extends HttpServlet {
 						      out.println("<h1>" + "Error!" + "</h1>");
 						      break;
 						}else{
-							out.println("You have successfully created a new customer!" + "\n" + "Customer id: " + id);
+							out.println("<h1>" + "You have successfully created a new customer!" + "\n" + "Customer id: " + id  + "</h1>");
 						      break;
 						}
 					case 2:

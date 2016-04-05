@@ -60,11 +60,11 @@ $("#submit_customer_button").click(function(){
         url: 'HotelReservationServlet?choice=1',
         //dataType: "json",
         data: JSON.stringify(data),
-        success: function(){
-			$("#hotelHeader").html("Success!");
-			alert('Customer saved successfully.');
+        success: function(data){
+			$("#hotelHeader").html(data);
+			//alert();
 			//var res=JSON.parse(AJAX.responseText)
-			console.log(data);
+			//console.log(data);
 			//alert(res);
 		},
 		error: function(data,status,xhr){
@@ -82,20 +82,19 @@ $("#submit_customer_button").click(function(){
 $("#submit_reserve_room_button").click(function(){
 	console.log('RESERVE ROOM');
 	var data = new Object();
-	data.choice = "2";
-	data.customerId = $("#customerIdField").val();
-	data.roomNum = $("#roomNumField").val();
+	data.customer_id = $("#customer_id").val();
+	data.room_number = $("#room_number").val();
 	$.ajax({
 		type: 'POST',
-        contentType: 'application/json',
-        url: '/PA2',
-        dataType: "json",
-        data: JSON.stringify(data),
+        //contentType: 'application/json',
+        url: 'HotelReservationServlet?choice=2',
+        //dataType: "json",
+        data: $.param({
+        	customer_id: data.customer_id,
+        	room_number: data.room_number
+        	}),
 		success: function(data,status,xhr){
-			alert('Room ' + roomNum + ' was reserved successfully for customer with id #' + custId + '.');
-			var res=JSON.parse(AJAX.responseText)
-			alert(data);
-			alert(res);
+			$("#hotelHeader").html(data);
 		},
 		error: function(data,status,xhr){
 			$("#hotelHeader").html("Error occurred.");
