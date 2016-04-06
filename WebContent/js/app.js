@@ -40,9 +40,7 @@ $("#get_reservation").hide();
 
 //function to Create a new Customer
 $("#submit_customer_button").click(function(){
-    $("#hide").click(function(){
-        $("#create_customer_information").hide();
-    });
+    $("#create_customer_information").hide();   
 	console.log('CREATE CUSTOMER');
 	var data = new Object();
 	data.firstName = $("#first_name").val();
@@ -76,6 +74,7 @@ $("#submit_customer_button").click(function(){
 
 //function to Reserve a Room
 $("#submit_reserve_room_button").click(function(){
+    $("#reserve").hide();
 	console.log('RESERVE ROOM');
 	var data = new Object();
 	data.customer_id = $("#customer_id").val();
@@ -103,6 +102,7 @@ $("#submit_reserve_room_button").click(function(){
 
 //function to Create a Payment
 $("#submit_payment_button").click(function(){
+	$("#create_payment").hide();
 	console.log('CREATE PAYMENT');
 	var data = new Object();
 	data.custId = $("#trans_customer_id").val();
@@ -148,6 +148,7 @@ $("#submit_get_customer_id_button").click(function(){
 
 //function that gets the customer with the specified name and prints that customer’s information.
 $("#submit_get_customer_name_button").click(function(){
+	$("#get_customer_name").hide();
 	var data = new Object();
 	data.choice = "3";
 	data.first_name = $("#customer_first_name").val();
@@ -201,3 +202,4 @@ $("#submit_get_reservation_button").click(function(){
 	});
 	
 });
+
