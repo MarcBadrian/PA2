@@ -41,8 +41,8 @@
 	<div id="create_payment">
 		<form>
 			<p>CREATE PAYMENT</p>
-			Customer ID: <input type="text" id="customer_id"> Room number: <input type="text" id="room_number"> <br>
-			Payment Amount: <input type="text" id="amount"> Credit Card Number:<input type="text" id="cc_number"> Expriation Date: <input type="text" id="exp_date"> 
+			Customer ID: <input type="text" id="trans_customer_id"> Room number: <input type="text" id="trans_room_number"> <br>
+			Payment Amount: <input type="text" id="amount"> Credit Card Number:<input type="text" id="cc_number"> Expiration Date: <input type="text" id="exp_date"> 
 		</form>
 		<button id="submit_payment_button" type="button" class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
@@ -53,7 +53,7 @@
 	<div id="get_customer_id">
 		<form>
 			<p>GET customer by ID</p>
-			Customer ID: <input type="text" id="customer_id">
+			Customer ID: <input type="text" id="find_customer_id">
 		</form>
 		<button id="submit_get_customer_id_button" type="button"
 			class="btn btn-lg btn-primary">SUBMIT</button>
@@ -64,7 +64,8 @@
 	<div id="get_customer_name">
 		<form>
 			<p>GET customer by Name</p>
-			Customer name: <input type="text" id="customer_name">
+			Customer - First Name: <input type="text" id="customer_first_name">
+			Customer - Last Name: <input type="text" id="customer_last_name">
 		</form>
 		<button id="submit_get_customer_name_button" type="button"
 			class="btn btn-lg btn-primary">SUBMIT</button>

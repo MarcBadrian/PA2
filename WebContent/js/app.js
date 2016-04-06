@@ -62,15 +62,11 @@ $("#submit_customer_button").click(function(){
         data: JSON.stringify(data),
         success: function(data){
 			$("#hotelHeader").html(data);
-			//alert();
-			//var res=JSON.parse(AJAX.responseText)
-			//console.log(data);
-			//alert(res);
+			$("#create_customer_information").hide();
 		},
 		error: function(data,status,xhr){
 			$("#hotelHeader").html("Error occurred.");
 			console.log(data);
-			//alert(data);
 			console.log(status);
 			console.log(xhr.responseText);
 		},
@@ -95,6 +91,7 @@ $("#submit_reserve_room_button").click(function(){
         	}),
 		success: function(data,status,xhr){
 			$("#hotelHeader").html(data);
+			$("#reserve").hide();
 		},
 		error: function(data,status,xhr){
 			$("#hotelHeader").html("Error occurred.");
@@ -108,23 +105,19 @@ $("#submit_reserve_room_button").click(function(){
 $("#submit_payment_button").click(function(){
 	console.log('CREATE PAYMENT');
 	var data = new Object();
-	data.choice = "3";
-	data.customerId = $("#customerIdField").val();
-	data.roomNum = $("#roomNumField").val();
-	data.amount = $("#amountField").val();
-	data.ccNum = $("#ccNumField").val();
-	data.expDate = $("#expDateField").val();
+	data.custId = $("#trans_customer_id").val();
+	data.roomNumber = $("#trans_room_number").val();
+	data.amount = $("#amount").val();
+	data.creditCardNum = $("#cc_number").val();
+	data.expDate = $("#exp_date").val();
 	$.ajax({
 		type: 'POST',
         contentType: 'application/json',
-        url: '/PA2',
-        dataType: "json",
+        url: 'HotelReservationServlet?choice=3',
         data: JSON.stringify(data),
-		success: function(data,status,xhr){
-			alert('Payment transaction #' + transId + ' has been successfully processed.');
-			var res=JSON.parse(AJAX.responseText)
-			alert(data);
-			alert(res);
+        success: function(data){
+			$("#hotelHeader").html(data);
+			$("#create_payment").hide();
 		},
 		error: function(data,status,xhr){
 			$("#hotelHeader").html("Error occurred.");
@@ -135,15 +128,16 @@ $("#submit_payment_button").click(function(){
 
 //function that gets the customer with the specified id and prints that customer’s information.
 $("#submit_get_customer_id_button").click(function(){
-	
-	var id = $("#idField").val();
-	data: id
+	var id = $("#find_customer_id").val();
 	$.ajax({
-		url:"/PA2",
+		url:"HotelReservationServlet?choice=4",
 		method:"GET",
-		dataType: "json",
+		data: $.param({
+        	customer_id: id,
+        	}),
 		success: function(data,status,xhr){
 			$("#hotelHeader").html(data);
+			$("#get_customer_id").hide();
 		},
 		error: function(data,status,xhr){
 			$("#hotelHeader").html("Error occurred.");
@@ -156,13 +150,15 @@ $("#submit_get_customer_id_button").click(function(){
 $("#submit_get_customer_name_button").click(function(){
 	var data = new Object();
 	data.choice = "3";
-	data.id = 
+	data.first_name = $("#customer_first_name").val();
+	data.last_name = $("#customer_last_name").val();
 	$.ajax({
-		url:"/PA2",
+		url:"HotelReservationServlet?choice=5",
 		method:"GET",
-		dataType: "json",
+		data: $.param(data),
 		success: function(data,status,xhr){
 			$("#hotelHeader").html(data);
+			$("#get_customer_name").hide();
 		},
 		error: function(data,status,xhr){
 			$("#hotelHeader").html("Error occurred.");
@@ -171,31 +167,37 @@ $("#submit_get_customer_name_button").click(function(){
 	
 });
 
-//You can get pretty much anything even other html.
+//function that gets all the current customers
 $("#submit_get_customers_current_button").click(function(){
-	$.get("/PA2", function(data){
+	$.get("HotelReservationServlet?choice=6", function(data){
 		$("#hotelHeader").html(data);
+		$("#get_customer_current").hide();
 	});
 	
 });
 
+//function that gets all the transactions
 $("#submit_get_transactions_button").click(function(){
-	$.get("/PA2", function(data){
+	$.get("HotelReservationServlet?choice=7", function(data){
 		$("#hotelHeader").html(data);
+		$("#get_transactions").hide();
 	});
 	
 });
 
+//function that gets all the vacancies
 $("#submit_get_vacancies_button").click(function(){
-	$.get("/PA2", function(data){
+	$.get("HotelReservationServlet?choice=8", function(data){
 		$("#hotelHeader").html(data);
+		$("#get_vacancies").hide();
 	});
 	
 });
 
 $("#submit_get_reservation_button").click(function(){
-	$.get("/PA2", function(data){
+	$.get("HotelReservationServlet?choice=9", function(data){
 		$("#hotelHeader").html(data);
+		$("#get_reservation").hide();
 	});
 	
 });

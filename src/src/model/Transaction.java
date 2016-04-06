@@ -13,8 +13,8 @@ public class Transaction {
 	private int customer_id;
 	private int room_number;
 	private double amount;
-	private int cc_number;
-	private int expiration_date;
+	private String cc_number;
+	private String expiration_date;
 	
 	// getter methods
 	public int getId() {
@@ -33,11 +33,11 @@ public class Transaction {
 		return amount;
 	}
 	
-	public int getCCNumber() {
+	public String getCCNumber() {
 		return cc_number;
 	}
 	
-	public int getExpDate() {
+	public String getExpDate() {
 		return expiration_date;
 	}
 
@@ -50,15 +50,19 @@ public class Transaction {
 		this.customer_id = customer_id;
 	}
 	
+	public void setRoomNumber(int room_number) {
+		this.room_number = room_number;
+	}
+	
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
-	public void setCCNum(int cc_number) {
+	public void setCreditCardNum(String cc_number) {
 		this.cc_number = cc_number;
 	}
 	
-	public void setExpDate(int expiration_date) {
+	public void setExpDate(String expiration_date) {
 		this.expiration_date = expiration_date;
 	}
 

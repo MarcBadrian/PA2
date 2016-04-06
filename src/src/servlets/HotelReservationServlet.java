@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import src.model.Customer;
+import src.model.Transaction;
 
 import org.json.JSONObject;
 
@@ -117,8 +118,6 @@ public class HotelReservationServlet extends HttpServlet {
 		    	MysqlConnector connector = new MysqlConnector();
 				Integer choice = Integer.parseInt(request.getParameter("choice"));
 
-	    	
-
 				PrintWriter out = response.getWriter();
 				
 				try {
@@ -126,15 +125,15 @@ public class HotelReservationServlet extends HttpServlet {
 					switch (choice) {
 					case 1: 
 						// 1. get received JSON data from request
-				        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-				        String json = "";
-				        if(br != null){
-				            json = br.readLine();
+				        BufferedReader cust_br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+				        String cust = "";
+				        if(cust_br != null){
+				            cust = cust_br.readLine();
 				        }
 				        // 2. initiate jackson mapper
-				        ObjectMapper mapper = new ObjectMapper();		 
+				        ObjectMapper cust_mapper = new ObjectMapper();		 
 				        // 3. Convert received JSON to Customer
-						Customer customer = mapper.readValue(json, Customer.class);
+						Customer customer = cust_mapper.readValue(cust, Customer.class);
 		        		//System.out.println(customer);
 						String first_name = customer.getFirstName();
 						String last_name = customer.getLastName();
@@ -162,15 +161,25 @@ public class HotelReservationServlet extends HttpServlet {
 						      break;
 						}
 					case 3:
-						Integer cust_id = Integer.parseInt(request.getParameter("customer_id"));
-						Integer room_id = Integer.parseInt(request.getParameter("room_number"));
-						float amount = Float.valueOf(request.getParameter("amount"));
-						Integer cc_number = Integer.parseInt(request.getParameter("cc_number"));
-						Integer exp_date = Integer.parseInt(request.getParameter("exp_date"));
-						boolean transaction = connector.createPayment(cust_id, room_id, amount, cc_number, exp_date);
+						// 1. get received JSON data from request
+				        BufferedReader br_trans = new BufferedReader(new InputStreamReader(request.getInputStream()));
+				        String trans = "";
+				        if(br_trans != null){
+				            trans = br_trans.readLine();
+				        }
+				        // 2. initiate jackson mapper
+				        ObjectMapper trans_mapper = new ObjectMapper();		 
+				        // 3. Convert received JSON to Customer
+						Transaction transaction = trans_mapper.readValue(trans, Transaction.class);
+						Integer cust_id = transaction.getCustomerId();
+						Integer room_id = transaction.getRoomNumber();
+						float amount = (float) transaction.getAmount();
+						String cc_number = transaction.getCCNumber();
+						String exp_date = transaction.getExpDate();
+						boolean transaction_bool = connector.createPayment(cust_id, room_id, amount, cc_number, exp_date);
 						int transaction_id = connector.getTransactionId(cust_id, room_id);
 						response.setContentType("text/html");
-						if(!transaction){
+						if(!transaction_bool){
 						      out.println("Error!");
 						      break;
 						}else{

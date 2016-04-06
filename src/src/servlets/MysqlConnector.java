@@ -120,7 +120,7 @@ public class MysqlConnector {
 		try {
 			createTable = conn.prepareStatement("USE Hotel_Reservation_System; ");
 			createTable.executeUpdate();
-			createTable3 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS transactions ( transaction_id	INT NOT NULL AUTO_INCREMENT, customer_id	INT NOT NULL, room_number	INT NOT NULL, amount	FLOAT NOT NULL, cc_number	INT(20) NOT NULL, expiration_date INT NOT NULL, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), FOREIGN KEY (room_number) REFERENCES rooms (room_number), PRIMARY KEY(transaction_id))");
+			createTable3 = conn.prepareStatement("CREATE TABLE IF NOT EXISTS transactions ( transaction_id	INT NOT NULL AUTO_INCREMENT, customer_id	INT NOT NULL, room_number	INT NOT NULL, amount	FLOAT NOT NULL, cc_number	TEXT NOT NULL, expiration_date VARCHAR(10) NOT NULL, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), FOREIGN KEY (room_number) REFERENCES rooms (room_number), PRIMARY KEY(transaction_id))");
 			createTable3.executeUpdate();
 
 		} catch (SQLException e) {
@@ -317,7 +317,7 @@ public class MysqlConnector {
 		return false;
 	};
 	
-	public boolean createPayment(int customer_id, int room_number, float amount, int cc_number, int exp_date) {
+	public boolean createPayment(int customer_id, int room_number, float amount, String cc_number, String exp_date) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		Connection con = null;
@@ -329,8 +329,8 @@ public class MysqlConnector {
 			stmt.setInt(1, customer_id);
 			stmt.setInt(2, room_number);
 			stmt.setFloat(3, amount);
-			stmt.setInt(4, cc_number);
-			stmt.setInt(5, exp_date);
+			stmt.setString(4, cc_number);
+			stmt.setString(5, exp_date);
 			System.out.println(stmt);
 			boolean success = stmt.executeUpdate() > 0;
 			return success;
