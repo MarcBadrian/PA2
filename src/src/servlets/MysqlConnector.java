@@ -22,7 +22,7 @@ public class MysqlConnector {
 
 	private static String dbName = "Hotel_Reservation_System";
 	private static String dbUser = "root";
-	private static String dbPassword = "054810407";
+	private static String dbPassword = "1234";
     int new_customer_id = 0;
 
 	public MysqlConnector() {

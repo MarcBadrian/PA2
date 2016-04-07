@@ -186,20 +186,34 @@ $("#submit_get_transactions_button").click(function(){
 	
 });
 
-//function that gets all the vacancies
-$("#submit_get_vacancies_button").click(function(){
-	$.get("HotelReservationServlet?choice=8", function(data){
-		$("#hotelHeader").html(data);
-		$("#get_vacancies").hide();
+$("#submit_vacancies_button").click(function(){
+	$("#get_vacancies").hide();
+	$.ajax({
+		url:"HotelReservationServlet?choice=8",
+		method:"GET",
+		dataType: "html",
+		success: function(data,status,xhr){
+			$("#hotelHeader").html(data);
+		},
+		error: function(data,status,xhr){
+			$("#hotelHeader").html("Error occurred.");
+		},
 	});
 	
 });
 
-$("#submit_get_reservation_button").click(function(){
-	$.get("HotelReservationServlet?choice=9", function(data){
-		$("#hotelHeader").html(data);
-		$("#get_reservation").hide();
+$("#submit_reservation_button").click(function(){
+	$("#get_reservation").hide();
+	$.ajax({
+		url:"HotelReservationServlet?choice=9",
+		method:"GET",
+		dataType: "html",
+		success: function(data,status,xhr){
+			$("#hotelHeader").html(data);
+		},
+		error: function(data,status,xhr){
+			$("#hotelHeader").html("Error occurred.");
+		},
 	});
 	
 });
-
