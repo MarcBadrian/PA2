@@ -77,7 +77,7 @@ public class HotelReservationServlet extends HttpServlet {
 			case 4: 
 				Integer customer_id = Integer.parseInt(request.getParameter("customer_id"));
 				String info = connector.getCustomer(customer_id);
-				out.println("\n" + info);
+				out.println("<br>" + info);
 				break;
 			case 5:
 				String first_name = request.getParameter("first_name");

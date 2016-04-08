@@ -444,13 +444,13 @@ public class MysqlConnector {
 			String billing_zip = rs.getString("billing_zip");
 			String checkin_date = rs.getString("checkin_date");
 			String checkout_date = rs.getString("checkout_date");
-			String custInfo = "Customer Information: " + "\n" + "\n" +
-					"Id: " + customer_id + "\n" +
-					"Name: " + first_name + " " + last_name + "\n" +
-					"Phone Number: " + phone_number + "\n" +
-					"Billing Address: " + billing_address + "\n" + "\t" + "\t" + billing_city + ", " + billing_state + "  " + billing_zip + "\n" +
-					"Check-In Date: " + checkin_date + "\n" +
-					"Check-Out Date: " + checkout_date + "\n";
+			String custInfo = "Customer Information: " + "<br>" + "<br>" +
+					"Id: " + customer_id + "<br>" +
+					"Name: " + first_name + " " + last_name + "<br>" +
+					"Phone Number: " + phone_number + "<br>" +
+					"Billing Address: " + billing_address + "<br>" + "&emsp;&emsp;" + "&emsp;&emsp;" + billing_city + ", " + billing_state + "  " + billing_zip + "<br>" +
+					"Check-In Date: " + checkin_date + "<br>" +
+					"Check-Out Date: " + checkout_date + "<br>";
 			return custInfo;
 		} catch (SQLException ex) {
 			// handle any errors

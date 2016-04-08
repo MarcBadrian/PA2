@@ -137,6 +137,7 @@ $("#submit_get_customer_id_button").click(function(){
         	}),
 		success: function(data,status,xhr){
 			$("#hotelHeader").html(data);
+			alert(data);
 			$("#get_customer_id").hide();
 		},
 		error: function(data,status,xhr){
@@ -179,9 +180,20 @@ $("#submit_get_customers_current_button").click(function(){
 
 //function that gets all the transactions
 $("#submit_get_transactions_button").click(function(){
-	$.get("HotelReservationServlet?choice=7", function(data){
-		$("#hotelHeader").html(data);
-		$("#get_transactions").hide();
+	var id = $("#find_trans_id").val();
+	$.ajax({
+		url:"HotelReservationServlet?choice=7",
+		method:"GET",
+		data: $.param({
+        	customer_id: id,
+        	}),
+		success: function(data,status,xhr){
+			$("#hotelHeader").html(data);
+			$("#get_transactions").hide();
+		},
+		error: function(data,status,xhr){
+			$("#hotelHeader").html("Error occurred.");
+		}
 	});
 	
 });
