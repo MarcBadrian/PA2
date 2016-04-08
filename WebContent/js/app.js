@@ -1,13 +1,17 @@
+/*
+ * COMP 6302 - Web Services / Internet
+ * PA2: Hotel Reservation System - Web Interface
+ * Marc Badrian and Hien Vo - Due 4/7/16
+ * 
+ */
+
 $(document).ready(function(){
 $("#create_customer_information").hide();
 $("#reserve").hide();
 $("#create_payment").hide();
 $("#get_customer_id").hide();
 $("#get_customer_name").hide();
-$("#get_customer_current").hide();
 $("#get_transactions").hide();
-$("#get_vacancies").hide();
-$("#get_reservation").hide();
 
     $("#create_customer_button").click(function(){
         $("#create_customer_information").show();
@@ -24,18 +28,10 @@ $("#get_reservation").hide();
     $("#get_customer_name_button").click(function(){
         $("#get_customer_name").show();
     });
-    $("#get_customer_current_button").click(function(){
-        $("#get_customer_current").show();
-    });
     $("#get_transactions_button").click(function(){
         $("#get_transactions").show();
     });
-    $("#get_vacancies_button").click(function(){
-        $("#get_vacancies").show();
-    });
-    $("#get_reservation_button").click(function(){
-        $("#get_reservation").show();
-    });
+
 });
 
 //function to Create a new Customer
@@ -56,7 +52,6 @@ $("#submit_customer_button").click(function(){
 		type: 'POST',
         contentType: 'application/json',
         url: 'HotelReservationServlet?choice=1',
-        //dataType: "json",
         data: JSON.stringify(data),
         success: function(data){
 			$("#hotelHeader").html(data);
@@ -81,9 +76,7 @@ $("#submit_reserve_room_button").click(function(){
 	data.room_number = $("#room_number").val();
 	$.ajax({
 		type: 'POST',
-        //contentType: 'application/json',
         url: 'HotelReservationServlet?choice=2',
-        //dataType: "json",
         data: $.param({
         	customer_id: data.customer_id,
         	room_number: data.room_number
@@ -137,7 +130,7 @@ $("#submit_get_customer_id_button").click(function(){
         	}),
 		success: function(data,status,xhr){
 			$("#hotelHeader").html(data);
-			alert(data);
+			console.log(data);
 			$("#get_customer_id").hide();
 		},
 		error: function(data,status,xhr){
@@ -170,15 +163,14 @@ $("#submit_get_customer_name_button").click(function(){
 });
 
 //function that gets all the current customers
-$("#submit_get_customers_current_button").click(function(){
+$("#get_customer_current_button").click(function(){
 	$.get("HotelReservationServlet?choice=6", function(data){
 		$("#hotelHeader").html(data);
-		$("#get_customer_current").hide();
 	});
 	
 });
 
-//function that gets all the transactions
+//function that gets all the transactions for a specified customer (by id)
 $("#submit_get_transactions_button").click(function(){
 	var id = $("#find_trans_id").val();
 	$.ajax({
@@ -198,7 +190,8 @@ $("#submit_get_transactions_button").click(function(){
 	
 });
 
-$("#submit_vacancies_button").click(function(){
+// function that gets all the current vacancies
+$("#get_vacancies_button").click(function(){
 	$("#get_vacancies").hide();
 	$.ajax({
 		url:"HotelReservationServlet?choice=8",
@@ -214,7 +207,8 @@ $("#submit_vacancies_button").click(function(){
 	
 });
 
-$("#submit_reservation_button").click(function(){
+// function that gets all the current reservations
+$("#get_reservation_button").click(function(){
 	$("#get_reservation").hide();
 	$.ajax({
 		url:"HotelReservationServlet?choice=9",

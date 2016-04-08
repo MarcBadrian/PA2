@@ -36,9 +36,9 @@ p {
 </style>
 
 <body>
-	<h1 id="hotelHeader">Welcome to Hotel</h1>
+	<h1 id="hotelHeader">Welcome to the Hotel Reservation System!</h1>
 	
-	<button id="create_customer_button" type="submit" class="btn btn-lg btn-primary">Create Customer</button>
+	<button id="create_customer_button" type="submit" class="btn btn-lg btn-primary">CREATE CUSTOMER</button>
 	<br>
 	<div id="create_customer_information">
 		<form>
@@ -51,21 +51,21 @@ p {
 		<button id="submit_customer_button" type="submit" class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
 
-<button id="reserve_room_button" type="button" class="btn btn-lg btn-primary">Reserve</button>
+<button id="reserve_room_button" type="button" class="btn btn-lg btn-primary">RESERVE ROOM</button>
 <br>
 	<div id="reserve">
 		<form>
-			<p>Reserve A Room</p>
+			<p>Please enter the customer's id and the room number below to reserve the room.</p>
 			Customer ID: <input type="text" id="customer_id"> Room number: <input type="text" id="room_number"> <br>
 		</form>
 		<button id="submit_reserve_room_button" type="button" class="btn btn-lg btn-primary">SUBMIT</button>
 	</div>
 	
-<button id="create_payment_button" type="button" class="btn btn-lg btn-primary">Create payment</button>
+<button id="create_payment_button" type="button" class="btn btn-lg btn-primary">CREATE PAYMENT</button>
 <br>
 	<div id="create_payment">
 		<form>
-			<p>CREATE PAYMENT</p>
+			<p>Please provide the following information to create a payment transaction.</p>
 			Customer ID: <input type="text" id="trans_customer_id"> Room number: <input type="text" id="trans_room_number"> <br>
 			Payment Amount: <input type="text" id="amount"> Credit Card Number:<input type="text" id="cc_number"> Expiration Date: <input type="text" id="exp_date"> 
 		</form>
@@ -73,11 +73,11 @@ p {
 	</div>
 	
 	
-<button id="get_customer_id_button" type="button" class="btn btn-lg btn-primary">GET CUSTOMER ID</button>
+<button id="get_customer_id_button" type="button" class="btn btn-lg btn-primary">GET CUSTOMER BY ID</button>
 <br>
 	<div id="get_customer_id">
 		<form>
-			<p>GET customer by ID</p>
+			<p>Please enter a customer id below.</p>
 			Customer ID: <input type="text" id="find_customer_id">
 		</form>
 		<button id="submit_get_customer_id_button" type="button"
@@ -88,9 +88,9 @@ p {
 <br>
 	<div id="get_customer_name">
 		<form>
-			<p>GET customer by Name</p>
-			Customer - First Name: <input type="text" id="customer_first_name">
-			Customer - Last Name: <input type="text" id="customer_last_name">
+			<p>Please enter a customer name below.</p>
+			First Name: <input type="text" id="customer_first_name">
+			Last Name: <input type="text" id="customer_last_name">
 		</form>
 		<button id="submit_get_customer_name_button" type="button"
 			class="btn btn-lg btn-primary">SUBMIT</button>
@@ -100,20 +100,13 @@ p {
 <button id="get_customer_current_button" type="button"
 			class="btn btn-lg btn-primary">GET CUSTOMERS CURRENT</button>
 <br>
-	<div id="get_customer_current">
-		<form>
-			<p>GET customers current</p>
-		</form>
-		<button id="submit_get_customers_current_button" type="button"
-			class="btn btn-lg btn-primary">SUBMIT</button>
-	</div>
-	
+
 	
 	<button id="get_transactions_button" type="button" class="btn btn-lg btn-primary">GET TRANSACTIONS</button>
 	<br>
 	<div id="get_transactions">
 		<form>
-			<p>GET transactions [CUSTOMER ID]</p>
+			<p>Please enter a customer id to get that customer's transaction records below.</p>
 			Customer ID: <input type="text" id="find_trans_id">
 		</form>
 		<button id="submit_get_transactions_button" type="button"
@@ -123,25 +116,9 @@ p {
 	
 	<button id="get_vacancies_button" type="button" class="btn btn-lg btn-primary">GET VACANCIES</button>
 	<br>
-	<div id="get_vacancies">
-		<form>
-			<p>GET VACANCIES</p>
-		</form>
-		<button id="submit_vacancies_button" type="button"
-			class="btn btn-lg btn-primary">SUBMIT</button>
-	</div>
 	
-	<button id="get_reservation_button" type="button" class="btn btn-lg btn-primary">GET RESERVATION</button>
-	<br>
-	<div id="get_reservation">
-		<form>
-			<p>GET RESERVATION</p>
-		</form>
-		<button id="submit_reservation_button" type="button"
-			class="btn btn-lg btn-primary">SUBMIT</button>
-	</div>
-	
-	
+	<button id="get_reservation_button" type="button" class="btn btn-lg btn-primary">GET RESERVATIONS</button>
+	<br>	
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script

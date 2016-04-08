@@ -1,7 +1,7 @@
 /*
  * COMP 6302 - Web Services / Internet
- * PA1: Hotel Reservation System
- * Marc Badrian and Hien Vo - Due 3/5/16
+ * PA2: Hotel Reservation System - Web Interface
+ * Marc Badrian and Hien Vo - Due 4/7/16
  * 
  */
 

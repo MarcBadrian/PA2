@@ -1,7 +1,7 @@
 /*
  * COMP 6302 - Web Services / Internet
- * PA1: Hotel Reservation System
- * Marc Badrian and Hien Vo - Due 3/5/16
+ * PA2: Hotel Reservation System - Web Interface
+ * Marc Badrian and Hien Vo - Due 4/7/16
  * 
  */
 
@@ -444,14 +444,15 @@ public class MysqlConnector {
 			String billing_zip = rs.getString("billing_zip");
 			String checkin_date = rs.getString("checkin_date");
 			String checkout_date = rs.getString("checkout_date");
-			String custInfo = "Customer Information: " + "<br>" + "<br>" +
+			String custInfo =  "<br>Customer Information: " + "<br>" + "<br>" +
 					"Id: " + customer_id + "<br>" +
 					"Name: " + first_name + " " + last_name + "<br>" +
 					"Phone Number: " + phone_number + "<br>" +
 					"Billing Address: " + billing_address + "<br>" + "&emsp;&emsp;" + "&emsp;&emsp;" + billing_city + ", " + billing_state + "  " + billing_zip + "<br>" +
 					"Check-In Date: " + checkin_date + "<br>" +
 					"Check-Out Date: " + checkout_date + "<br>";
-			return custInfo;
+			return "<p align=\"left\">"+ "<font size = 6>" + custInfo + "</font>" + "</p>";
+			//return custInfo;
 		} catch (SQLException ex) {
 			// handle any errors
 			System.out.println("SQLException: " + ex.getMessage());
@@ -499,13 +500,13 @@ public class MysqlConnector {
 			stmt.setString(1, f_name);
 			stmt.setString(2, l_name);
 			rs = stmt.executeQuery();
-			String allMatches = "Last Name:		First Name:		Id:		Phone Number: " + "\n" + "\n";
+			String allMatches = "Last Name:		First Name:		Id:		Phone Number: " + "<br>" + "<br>";
 			while (rs.next()) {
 			String customer_id = Integer.toString(rs.getInt("customer_id"));
 			String first_name = rs.getString("first_name");
 			String last_name = rs.getString("last_name");
 			String phone_number = rs.getString("phone_number");
-			String custInfo = last_name + "\t" + "\t" + "\t" + first_name + "\t" + "\t" + "\t" + customer_id + "\t" + "\t" + phone_number + "\n";
+			String custInfo = last_name + "&emsp;&emsp;" + "&emsp;&emsp;" + "&emsp;&emsp;" + first_name + "&emsp;&emsp;" + "&emsp;&emsp;" + "&emsp;&emsp;" + customer_id + "&emsp;&emsp;" + "&emsp;&emsp;" + phone_number + "<br>";
 			allMatches += custInfo;
 			}
 			return allMatches;
@@ -554,13 +555,13 @@ public class MysqlConnector {
 			// Execute the query
 			stmt = con.prepareStatement("SELECT * FROM Hotel_Reservation_System.rooms JOIN Hotel_Reservation_System.customers ON rooms.current_occupant = customers.customer_id");
 			rs = stmt.executeQuery();
-			String allMatches = "Last Name:		First Name:		Id:		Phone Number: " + "\n" + "\n";
+			String allMatches = "Last Name:		First Name:		Id:		Phone Number: " + "<br>" + "<br>";
 			while (rs.next()) {
 			String customer_id = Integer.toString(rs.getInt("customer_id"));
 			String first_name = rs.getString("first_name");
 			String last_name = rs.getString("last_name");
 			String phone_number = Integer.toString(rs.getInt("phone_number"));
-			String custInfo = last_name + "\t" + "\t" + "\t" + first_name + "\t" + "\t" + "\t" + customer_id + "\t" + "\t" + phone_number + "\n";
+			String custInfo = last_name + "&emsp;&emsp;" + "&emsp;&emsp;" + "&emsp;&emsp;" + first_name + "&emsp;&emsp;" + "&emsp;&emsp;" + "&emsp;&emsp;" + customer_id + "&emsp;&emsp;" + "&emsp;&emsp;" + phone_number + "<br>";
 			allMatches += custInfo;
 			}
 			return allMatches;
@@ -612,13 +613,13 @@ public class MysqlConnector {
 			stmt = con.prepareStatement("SELECT * FROM Hotel_Reservation_System.transactions JOIN Hotel_Reservation_System.customers ON transactions.customer_id = customers.customer_id WHERE transactions.customer_id = ?");
 			stmt.setInt(1, customer_id);
 			rs = stmt.executeQuery();
-			String allMatches = "Transaction Id:		Amount:			First Name:	Last Name:	" + "\n" + "\n";
+			String allMatches = "Transaction Id:		Amount:			First Name:	Last Name:	" + "<br>" + "<br>";
 			while (rs.next()) {
 				String transaction_id = Integer.toString(rs.getInt("transaction_id"));
 				String amount = Float.toString(rs.getFloat("amount"));
 				String first_name = rs.getString("first_name");
 				String last_name = rs.getString("last_name");
-			String custInfo = transaction_id + "\t" + "\t" + "\t" + amount + "\t" + "\t" + "\t" + first_name + "\t" + "\t" + last_name + "\n";
+			String custInfo = transaction_id + "&emsp;&emsp;" + "&emsp;&emsp;" + "&emsp;&emsp;" + amount + "&emsp;&emsp;" + "&emsp;&emsp;" + "&emsp;&emsp;" + first_name + "&emsp;&emsp;" + "&emsp;&emsp;" + last_name + "<br>";
 			allMatches += custInfo;
 			}
 			return allMatches;
@@ -722,7 +723,6 @@ public class MysqlConnector {
 			// Execute the query
 			stmt = con.prepareStatement("SELECT room_number, first_name, last_name FROM Hotel_Reservation_System.rooms JOIN Hotel_Reservation_System.customers ON rooms.current_occupant = customers.customer_id");
 			rs = stmt.executeQuery();
-//			String allMatches = "Room Number:	First Name:	Last Name: " + "\n";
 			String allMatches = "Room Number &emsp;	First Name &emsp;	Last Name &emsp;  <br>";
 			while (rs.next()) {
 			String room_number = Integer.toString(rs.getInt("room_number"));
